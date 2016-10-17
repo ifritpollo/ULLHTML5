@@ -1,0 +1,128 @@
+ 
+		.encontrado{
+			border: 5px solid #939993;
+		}
+
+		.contenidoGrande{
+			display: table;
+		}
+		.contenidoMediano{
+			padding: 2px;
+			display: table-row;
+		}
+		.contenidoPequeño{
+			padding: 2px;
+			display: table-cell;
+		}
+		
+		.datosPersonales{
+			display: table;
+		}
+		.fila{
+			padding: 2px;
+			display: table-row;
+		}
+		.textoCampo{
+			padding: 2px;
+			width: 200px;
+			display: table-cell;
+		}
+		.campo{
+			padding: 2px;
+			width: 400px;
+			display: table-cell;
+		}
+
+		.autoEvaluacion{
+			display: table;
+		}
+		.fila2{
+			padding: 2px;
+			display: table-row;
+		}
+		.textoCampoEvaluacion{
+			padding: 2px;
+			width: 300px;
+			display: table-cell;
+		}
+		.campoEvaluacion{
+			padding: 2px;
+			text-align: left;
+			width: 300px;
+			display: table-cell;
+		}
+
+		.botonera{
+			display: table;
+		}
+		.fila3{
+			padding: 2px;
+			display: table-row;
+		}
+		.btnEnviar{
+			padding: 2px;
+			width: 400px;
+			display: table-cell;
+		}
+		.Btnlimpiar{
+			padding: 2px;
+			width: 400px;
+			display: table-cell;
+		}
+
+		fieldset{
+			width: 600px;
+			height: 600px;
+			padding: 10px;
+		}
+		details{
+			padding: 10px;
+		}
+
+		input:valid:not([type="submit"]) { background:#dcffda; }
+		input:invalid { background:#ffdada; }
+		meter{
+			width: 200px;
+			height: 20px;
+		}
+		progress{
+			-webkit-appearance: none;
+			width: 200px;
+			height: 20px;
+		}
+		progress::-webkit-progress-bar{
+			background: grey;
+			width: 200px;
+			height: 20px;
+		}
+		progress::-webkit-progress-value{
+			background: blue;
+			width: 200px;
+			height: 20px;
+		}
+		progress.bien::-webkit-progress-value{
+			background: green;
+			width: 200px;
+			height: 20px;
+		}
+		progress.regular::-webkit-progress-value{
+			background: yellow;
+			width: 200px;
+			height: 20px;
+		}
+		progress.mal::-webkit-progress-value{
+			background: red;
+			width: 200px;
+			height: 20px;
+		}
+		pre{
+			text-align: left;
+		}
+		table{
+			border: 2px solid #000;
+		}
+		td{
+			border: 2px solid #000;
+			align: center;
+			padding: 5px;
+		}
