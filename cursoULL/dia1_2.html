@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dia 1 prueba 2</title>
+  <link rel="stylesheet" type="text/css" href="css/magic.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="css/csshake.min.css"></link>
+  
+  <style>
+  img{
+    width:500px;
+  }
+  </style>
+  <script>
+  function cambioClase(){
+    document.getElementById("imagen").className=document.getElementById("clase").value;
+    console.log(document.getElementById("imagen").class);
+  }
+  </script>
+</head>
+<body>
+  <img id="imagen" class="magictime" src="img/imagen.jpg" onclick="this.classList.add('puffIn');">
+  <div class="shake-hard">
+  <img id="imagen2" src="img/imagen.jpg">
+  </div>
+ </body>
+ </html>

@@ -2,17 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Dia 1</title>
-  <link rel="stylesheet" href="https://cdn.rawgit.com/una/CSSgram/master/source/css/cssgram.min.css"></link>
+  <title>Dia 1 prueba 1</title>
+  <link rel="stylesheet" href="css/cssgram.min.css"></link>
+  <style>
+  img{
+    width:500px;
+  }
+  </style>
+  <script>
+  function cambioClase(){
+    document.getElementById("imagen").className=document.getElementById("clase").value;
+    console.log(document.getElementById("imagen").class);
+  }
+  </script>
 </head>
 <body>
-  <header>
-  <img class="_1977" src="http://www.paisajesbonitos.org/wp-content/uploads/2015/11/paisajes-bonitos-de-oto%C3%B1o-lago.jpg">
-  <img class="aden" src="http://www.paisajesbonitos.org/wp-content/uploads/2016/01/paisajes-bonitos-de-verano-playa-paradisiaca-exotica-imagen-foto-wallpaper-0.jpg">
-  <img class="brooklyn" src="www.ambientum.com/img_boletin/noticia/galicia-paisaje.jpg">
-  <img class="inkewell" src="http://definicionde.hugex.net/wp-content/uploads/2015/07/e1001e86903d5fccba2a7e83a0547bd4.jpg">
-  <img class="perpetua" src="https://i.ytimg.com/vi/GjiFHJNSqQI/maxresdefault.jpg">
-  <img class="xpro2" src="https://i.ytimg.com/vi/GjiFHJNSqQI/maxresdefault.jpg">
-  </header>
+  <img id="imagen" class="_1977" src="img/imagen.jpg" onclick="cambioClase()"><br>
+  <input type="text" id="clase" value="_1977" onkeyup="cambioClase()" autofocus>
+   '_1977', 'aden', 'brooklyn', 'clarendon', 'earlybird','gingham', 'hudson', 'inkwell', 'lark', 'lo-fi', 'mayfair', 'moon', 'nashville', 'perpetua', 'reyes', 'rise', 'slumber', 'toaster', 'walden', 'willow', 'xpro2'
+
+
  </body>
  </html>
