@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulario de autoevaluación</title>
+  <script src="funciones.js"></script>
+  <link rel="stylesheet"  src="diseño.css"></link>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/una/CSSgram/master/source/css/cssgram.min.css"></link>
+</head>
+<body>
+  <header>
+  <img src="">
+  <h1>Formulario de autoevaluación del alumnado:</h1> 
+  <form name="formularioBusqueda" id="formularioBusqueda" method="post" action="formulario_de_evaluacion.html" target="_self" accept-charset="utf-8" autocomplete="on" onsubmit="return buscarBusqueda()">
+    <label class="textoCampo">Buscar:</label><input type="search" name="buscar" id="buscar" placeholder="Buscar aquí..."><input type="button" value="Buscar" onClick="buscarBusqueda()">
+  </form>
+  <details>
+  <summary>Para que sirve</summary>
+  <p>Este formulario de autoevaluación te ayudara a comprender tus calificaciónes y mejorar tu rendimiento en próximos cursos.</p>
+  </details>
+  </header>
+
+  <div class="contenidoGrande">
+    <div class="contenidoMediano">
+      <div class="contenidoPequeño">
+        <form name="formularioEvaluacion" id="formularioEvaluacion" method="post" action="formulario_de_evaluacion.html" target="_self" accept-charset="utf-8" autocomplete="on" onsubmit="return compruebo()">
+        <fieldset>
+          <legend>Datos personales:<meter id="progreso" low="25" high="75" optimum="100" min="0" max="100" ></meter></legend>
+          <details>
+          <summary>Ayuda</summary>
+          <p>Estos datos se recogen para poder identificar al alumno.</p>
+          </details>
+          <div class="datosPersonales">
+            <div class="fila">
+              <label class="textoCampo">Nombre:</label>   
+              <span class="campo"><input type="text" name="nombre" id="nombre" placeholder="Escriba su nombre" minlength="2" autofocus required onblur="cargarBarra();"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Apellidos:</label>
+              <span class="campo"><input type="text" name="apellidos" id="apellidos" placeholder="Escriba sus apellidos" minlength="2" tabindex="1" required onblur="cargarBarra()"></span>
+            </div>
+            <div class="fila">  
+              <label class="textoCampo">DNI:</label>
+              <span class="campo"><input type="text" name="dni" id="dni"  placeholder="00000000X" tabindex="2" required pattern="[0-9]{8}[A-Za-z]" onblur="cargarBarra()"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Sexo:</label>
+              <span class="campo"><label class="hombre"><input type="radio" name="sexo" value="H" tabindex="3" required onClick="cargarBarra()">Hombre</label> / <label class="mujer"><input type="radio" name="sexo" value="M" tabindex="4" required onClick="cargarBarra()">Mujer</label></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Fecha de nacimiento:</label>
+              <span class="campo"><input type="date" name="fechaNacimiento" tabindex="5" required onblur="cargarBarra()"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Email:</label>
+              <span class="campo"><input type="email" name="email" id="email" placeholder="email@dominio.com/es/..." tabindex="6" required onblur="cargarBarra()"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Teléfono:</label>
+              <span class="campo"><input type="tel" name="telefono" id="telefono" placeholder="000000000" tabindex="7" required onblur="cargarBarra()" pattern="[0-9]{9}"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Web:</label>
+              <span class="campo"><input type="url" name="web" id="web" placeholder="Http://URL" tabindex="8" required onblur="cargarBarra()"></span>
+            </div>
+            <div class="fila">
+              <label class="textoCampo">Profesión:</label>
+              <select name="profesion" id="profesion" tabindex="9" required onChange="cargarBarra(); habilitarOtros();">
+                <option value="" selected disabled>Seleccione profesión</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Informático">Informático</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Otra">Otra</option>
+              </select>
+              <input type="hidden" name="otraProfesion" id="otraProfesion" onblur="cargarBarra()">
+            </div>                      
+          </div>
+          <span>Titulaciones y otros estudios:<br>
+          <textarea name="estudios" id="estudios" cols="50" rows="5" tabindex="10" placeholder="Especifique sus estudios" required onBlur="cargarBarra()" spellcheck="true"></textarea>
+        </fieldset>
+      </div>
+      <div class="contenidoPequeño">
+        <fieldset>
+          <legend><h2>Autoevaluación:<progress id="evaluacion" min="0" max="8" value="6" ></progress> <span id="nota">Nota:</span></h2></legend>
+          <details>
+          <summary>Para que sirve...</summary>
+          <p>La nota es una estimación, para que el alumnado pueda valorar su aprendizaje en el curso.</p>
+          </details>
+          <details>
+          <summary>Como se calcula...</summary>
+          <pre>
+            <strong>Nota por tema:</strong> Refleja los conocimientos adquiridos en cada tema.
+
+            <strong>Asistencia:</strong> Refleja los días que se ha asistido al curso.
+
+            <strong>Participación:</strong> Refleja los días que se ha participado durante la exposición del curso.
+
+            <strong>Trabajo:</strong> Refleja la nota obtenida en el trabajo de fin de curso.
+          </pre>
+          <table id="tablaNotas">
+            <thead>
+              <tr>          
+                <th>
+                  SECCIÓN
+                </th>
+                <th>
+                  PUNTOS
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Nota por tema
+                </td>
+                <td>
+                  0-10(se calcula la media entre los 5 temas)
+                </td>
+              </tr>
+              <tr>          
+                <td>
+                  Día de asistencia
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Día de participación
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br><br>
+          <strong>Para calcular la nota:</strong> 
+          <ol>
+            <li>Se obtiene la media de la suma de las 3 secciones que componen la anterior tabla.</li>
+            <li>Se resta un 33% de la nota maxima posible.Dado que es el valor maximo que puede obtenerse por el trabajo.</li>
+            <li>Se el trabajo esta aprobado, de la nota obtenida se divide entre 3 para obtener el 33% restante de la nota final</li>
+            <li>Por último se suma el valor resultante del trabajo a la nota obtenida por las secciones de la tabla.</li>
+          </ol>   
+          </details>
+          <h3>Temario:</h3>
+          <div class="autoEvaluacion">          
+            <div class="fila2">
+              <label class="textoCampoEvaluacion">Tema 1: Introducción al HTML/HTML5:</label>
+              <span class="campoEvaluacion"><input type="number" name="tema1" id="tema1" tabindex="11" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+            </div>
+            <div class="fila2">
+              <label class="textoCampoEvaluacion">Tema 2: HTML5 Básico / Intermedio:</label>
+              <span class="campoEvaluacion"><input type="number" name="tema2" id="tema2" tabindex="12" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+            </div>
+            <div class="fila2">
+              <label class="textoCampoEvaluacion">Tema 3: HTML5 Intermedio:</label>
+              <span class="campoEvaluacion"><input type="number" name="tema3" id="tema3" tabindex="13" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+            </div>
+            <div class="fila2">
+              <label class="textoCampoEvaluacion">Tema 4: HTML5 Avanzado:</label>
+              <span class="campoEvaluacion"><input type="number" name="tema4" id="tema4" tabindex="14" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+            </div>
+            <div class="fila2">
+              <label class="textoCampoEvaluacion">Tema 5: HTML5 Experto:</label>
+              <span class="campoEvaluacion"><input type="number" name="tema5" id="tema5" tabindex="15" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+            </div>
+          </div>
+          <h3>Asistencia:</h3>        
+          <span>
+            <label class="dias">Lunes:<input type="checkbox" name="aLunes" id="aLunes" tabindex="16" onClick="evaluar(); actdes();" value=1></label> / 
+            <label class="dias">Martes:<input type="checkbox" name="aMartes" id="aMartes" tabindex="17" onClick="evaluar(); actdes();" value=1></label> / 
+            <label class="dias">Miercoles:<input type="checkbox" name="aMiercoles" id="aMiercoles" tabindex="18" onClick="evaluar(); actdes();" value=1></label> / 
+            <label class="dias">Jueves:<input type="checkbox" name="aJueves" id="aJueves" tabindex="19" onClick="evaluar(); actdes();" value=1></label> / 
+            <label class="dias">Viernes:<input type="checkbox" name="aViernes" id="aViernes" tabindex="20" onClick="evaluar(); actdes();" value=1></label>    
+          </span>
+          <h3>Participación:</h3>       
+          <span>
+            <label class="dias">Lunes:<input type="checkbox" name="pLunes" id="pLunes" tabindex="21" onClick="evaluar()" value=1 disabled></label> / 
+            <label class="dias">Martes:<input type="checkbox" name="pMartes" id="pMartes" tabindex="22" onClick="evaluar()" value=1 disabled></label> / 
+            <label class="dias">Miercoles:<input type="checkbox" name="pMiercoles" id="pMiercoles" tabindex="23" onClick="evaluar()" value=1 disabled></label> / 
+            <label class="dias">Jueves:<input type="checkbox" name="pJueves" id="pJueves" tabindex="24" onClick="evaluar()" value=1 disabled></label> / 
+            <label class="dias">Viernes:<input type="checkbox" name="pViernes" id="pViernes" tabindex="25" onClick="evaluar()" value=1 disabled></label>
+          </span>     
+          <h3>Trabajo final:</h3>     
+          <span class="campoEvaluacion"><input type="number" name="trabajo" id="trabajo" tabindex="26" min="0" max="10" value=5 required onChange="de0a10(this); evaluar();"></span>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+    <div class="botonera">
+      <div class="fila3"> 
+        <span class="btnEnviar"><input type="submit" valuer="enviar" tabindex="11"></span>
+        <span class="btnLimpiar"><input type="button" value="limpiar" tabindex="12" onclick="return resetear()"></span>
+      </div>
+      <input type="hidden" name="guardar" value="1"><!--Variable de control: por si se abre la página sin enviar el formulario no ejecute el envio de datos o la inserción en la base de datos-->
+    </div>      
+  </form>
+</body>
+</html>
