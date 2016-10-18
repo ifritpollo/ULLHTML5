@@ -1,16 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dia 2 prueba 2</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
-	<script>
-	$(document).ready(function(){
-		$('.slider').slick();
-	});
+	<meta charset="UTF-8" />
+	<title>Dia 2 prueba 2</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+	<script src="https://cdn.rawgit.com/jotform/before-after.js/master/before-after.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>	
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/themes/libnotify.min.css">
+	<script>	
+		$(document).ready(function(){
+			$('.slider').slick({
+				autoplay: true,
+				autoplaySpeed: 2000,				
+				dots: true,
+				infinite: true,
+				pauseOnHover: true,
+				pauseOnDotHover: true,	
+				variableWidth: true,
+				adaptativeHeight: true,
+				lazyLoad: 'progressive',
+				draggable: false,		
+			});
+
+			$('.ba-slider').beforeAfter();			
+
+			// Opcional (activa a los 5 segundos)
+			var modal = ouibounce(document.getElementById('modal-card'), {
+			  aggressive: true,            // borra la cookie viewedOuibounceModal
+			  timer: 1                        // espera (evita falsos positivos)
+			});
+			setTimeout(function() { modal.fire() }, 1000);    
+
+			aviso();
+		});
+
+		function mensaje(campo) {	
+			var valor=campo.title;
+			var descript=campo.alt;		
+			swal({
+				title: valor,
+			    text: descript,
+			    type: 'success',
+			 });
+		}
+		function paisajes(){
+			ouibounce(document.getElementById('modal-card'), {
+			  aggressive: true,            // borra la cookie viewedOuibounceModal
+			  timer: 1                        // espera (evita falsos positivos)
+			});
+		}
+		// Función de ventana de alerta
+		function aviso() {
+		  humane.log('Página cargada completamente', {
+		    timeout: 4000,
+		    clickToClose: true
+		  });
+		}
 	</script> 
 	<style>
 		.slider{
@@ -20,15 +72,140 @@
 		body{
 			background-color:steelblue;
 		}
+		img{
+			max-width: 500px;
+		}
+		.ba-slider {
+		  width: 500px;
+		  margin: auto;
+		  border: 5px solid #000;
+		}
+		.ba-slider {
+		    position: relative;
+		    overflow: hidden;
+		}
+		 
+		.ba-slider img {
+		    width: 100%;
+		    display:block;
+		    max-width:none;
+		}
+		 
+		.ba-slider .resize {
+		    position: absolute;
+		    top:0;
+		    left: 0;
+		    height: 100%;
+		    width: 50%;
+		    overflow: hidden;
+		}
+
+
+		.ba-slider .handle { /* Thin line seperator */
+		  position:absolute; 
+		  left:50%;
+		  top:0;
+		  bottom:0;
+		  width:4px;
+		  margin-left:-2px;
+		 
+		  background: rgba(0,0,0,.5);
+		  cursor: ew-resize;
+		}
+		 
+		.ba-slider .handle:after {  /* Big orange knob  */
+		    position: absolute;
+		    top: 50%;
+		    width: 64px;
+		    height: 64px;
+		    margin: -32px 0 0 -32px;
+		 
+		    content:'\21d4';
+		    color:white;
+		    font-weight:bold;
+		    font-size:36px;
+		    text-align:center;
+		    line-height:64px;
+		 
+		    background: #ffb800; /* @orange */
+		    border:1px solid #e6a600; /* darken(@orange, 5%) */
+		    border-radius: 50%;
+		    transition:all 0.3s ease;
+		    box-shadow:
+		      0 2px 6px rgba(0,0,0,.3), 
+		      inset 0 2px 0 rgba(255,255,255,.5),
+		      inset 0 60px 50px -30px #ffd466; /* lighten(@orange, 20%)*/ 
+		}
+
+		.ba-slider .handle.draggable:after {
+		    width: 48px;
+		    height: 48px;
+		    margin: -24px 0 0 -24px;
+		    line-height:50px;
+		    font-size:30px;
+		}
+		/* Ventana modal */
+		#modal-card {
+		  border: 1px solid #888;		  
+		  margin: 2px auto;
+		  width: 400px;
+		  padding: 25px;
+		  box-shadow: 2px 2px 10px RGBA(0,0,0, .5);
+		  background: green;
+		  text-align: center;
+		  display: none;
+		}
+		/* Fondo gris */
+		.modal-background {
+		  background: RGBA(0,0,0, .5);
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  bottom: 0;
+		  right: 0;
+		  z-index: -5;
+		}
+		.boton{
+			margin: auto;
+		}
 	</style>
 </head>
 
 <body>
-	<div class="slider">
-		<div><img src="http://www.paisajesimagenes.com/wp-content/uploads/tipos-de-paisajes.jpg" alt="Gato 1"></div>
-		<div><img src="http://2.bp.blogspot.com/-J3pxJQmRNaw/TmVDyc7Ux7I/AAAAAAAALQk/MJCGmM8HPVE/s1600/Paisaje-m%25C3%25A1gico.jpg" alt="Gato 2"></div>
-		<div><img src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" alt="Gato 3"></div>
-		<div><img src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" alt="Gato 4"></div>
+	<div id="modal-card">
+	  <h4>Slider de imágenes</h4>
+	  <p>Estos son los paisajes que se ven desde mi ventana:</p>
+		<div class="slider">
+			<div>
+				<img id="foto1" src="http://www.paisajesimagenes.com/wp-content/uploads/tipos-de-paisajes.jpg" title="paisaje 1" alt="montañas y prados verdes" onClick="mensaje(this)">
+			</div>
+			<div>
+				<img src="http://2.bp.blogspot.com/-J3pxJQmRNaw/TmVDyc7Ux7I/AAAAAAAALQk/MJCGmM8HPVE/s1600/Paisaje-m%25C3%25A1gico.jpg" title="paisaje 2" alt="lago helado" onClick="mensaje(this)">
+			</div>
+			<div>
+				<img src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="paisaje 3" alt="camino con flores amarillas" onClick="mensaje(this)">
+			</div>
+			<div>
+				<img src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="paisaje 4" alt="gran lago" onClick="mensaje(this)">
+			</div>	
+			<!-- before-after slider -->
+			<div class="ba-slider">
+				<!-- Imagen del después -->
+				<img src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="Después" alt="pues así quedó despues de usar photoshop" onClick="mensaje(this)">
+				<!-- Imagen del después -->
+				<div class="resize">
+					<img src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="Antes" alt="antes del retoque fotográfico" onClick="mensaje(this)">
+				</div>
+				<!-- Separador -->
+				<span class="handle"></span>
+			</div>	
+		</div>
+		<a href="#" onClick="document.getElementById('modal-card').remove()">Sí, tío. Bye.</a>
+		<!-- Fondo gris -->
+		<div class="modal-background"></div>		
 	</div>
- </body>
+	<div class="boton">
+		<button onclick="paisajes()">Ver paisajes</button>
+	</div>
+</body>
 </html>
