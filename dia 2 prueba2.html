@@ -8,12 +8,15 @@
 	<script src="https://cdn.rawgit.com/jotform/before-after.js/master/before-after.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/jquery.cookieBar.min.js"></script>	
+	
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/themes/libnotify.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/cookieBar.min.css">
 	<script>	
 		$(document).ready(function(){
 			$('.slider').slick({
@@ -39,6 +42,10 @@
 			setTimeout(function() { modal.fire() }, 1000);    
 
 			aviso();
+
+			$('.cookie-message').cookieBar({
+			    closeButton: '.close'
+			  });
 		});
 
 		function mensaje(campo) {	
@@ -51,10 +58,7 @@
 			 });
 		}
 		function paisajes(){
-			ouibounce(document.getElementById('modal-card'), {
-			  aggressive: true,            // borra la cookie viewedOuibounceModal
-			  timer: 1                        // espera (evita falsos positivos)
-			});
+			$.ouibounce(document.getElementById('modal-card'));
 		}
 		// Función de ventana de alerta
 		function aviso() {
@@ -66,14 +70,14 @@
 	</script> 
 	<style>
 		.slider{
-			max-width: 500px;
+			max-width: 600px;
 			margin:auto;
 		}
 		body{
 			background-color:steelblue;
 		}
 		img{
-			max-width: 500px;
+			max-width: 450px;
 		}
 		.ba-slider {
 		  width: 500px;
@@ -102,15 +106,15 @@
 
 
 		.ba-slider .handle { /* Thin line seperator */
-		  position:absolute; 
-		  left:50%;
-		  top:0;
-		  bottom:0;
-		  width:4px;
-		  margin-left:-2px;
-		 
-		  background: rgba(0,0,0,.5);
-		  cursor: ew-resize;
+			position:absolute; 
+			left:50%;
+			top:0;
+			bottom:0;
+			width:4px;
+			margin-left:-2px;
+
+			background: rgba(0,0,0,.5);
+			cursor: ew-resize;
 		}
 		 
 		.ba-slider .handle:after {  /* Big orange knob  */
@@ -146,28 +150,40 @@
 		}
 		/* Ventana modal */
 		#modal-card {
-		  border: 1px solid #888;		  
-		  margin: 2px auto;
-		  width: 400px;
-		  padding: 25px;
-		  box-shadow: 2px 2px 10px RGBA(0,0,0, .5);
-		  background: green;
-		  text-align: center;
-		  display: none;
+			border: 1px solid #888;		  
+			margin: 2px auto;
+			width: 400px;
+			padding: 25px;
+			box-shadow: 2px 2px 10px RGBA(0,0,0, .5);
+			background: green;
+			text-align: center;
+			display: none;
 		}
 		/* Fondo gris */
 		.modal-background {
-		  background: RGBA(0,0,0, .5);
-		  position: absolute;
-		  top: 0;
-		  left: 0;
-		  bottom: 0;
-		  right: 0;
-		  z-index: -5;
+			background: RGBA(0,0,0, .5);
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: -5;
 		}
 		.boton{
 			margin: auto;
+			z-index: -10;
 		}
+		/* Opción 3: Personalizar apariencia */
+		.cookie-message {
+			width: 200px;
+			top: auto;
+			left: auto;
+			bottom: 0;
+			right: 0;
+			background: #111 url(http://i.emezeta.com/img/cookiem.png) 245px 45px no-repeat;
+		}
+		.cookie-message p { color: #FFF }
+		.cookie-message a { color: #2AF }
 	</style>
 </head>
 
@@ -200,12 +216,18 @@
 				<span class="handle"></span>
 			</div>	
 		</div>
-		<a href="#" onClick="document.getElementById('modal-card').remove()">Sí, tío. Bye.</a>
+		<button onClick="document.getElementById('modal-card').remove()">Sí, tío. Bye.</button>
 		<!-- Fondo gris -->
 		<div class="modal-background"></div>		
 	</div>
 	<div class="boton">
 		<button onclick="paisajes()">Ver paisajes</button>
+	</div>
+	<!-- Opción 2: Personalizar mensaje -->
+	<div class="cookie-message">
+	  <p>Esta web utiliza cookies. Si sigue navegando, se entiende que acepta las condiciones de uso. 
+	  <!-- Botón de cerrar -->
+	  <a class="close" href="#">Cerrar</a></p>
 	</div>
 </body>
 </html>
