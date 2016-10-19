@@ -9,14 +9,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/jquery.cookieBar.min.js"></script>	
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/jquery.cookieBar.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>	
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/4.0.6/sweetalert2.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/themes/libnotify.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/cookieBar.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css">
 	<script>	
 		$(document).ready(function(){
 			$('.slider').slick({
@@ -45,7 +46,37 @@
 
 			$('.cookie-message').cookieBar({
 			    closeButton: '.close'
-			  });
+			});
+
+			var nombre = document.getElementById('nombre');
+			var fotos = document.getElementById('fotos');
+			var telefono = document.getElementById('telefono');
+			new Awesomplete(nombre, {
+				list: ["Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE", "Node.js", "Ruby on Rails"],
+				minChars: 2,
+				maxItems: 5
+			});
+
+
+			var elementos = document.getElementsByName('foto');
+			var arrayElementos = [];
+			for(var i = 0; i < elementos.length; i++){
+				arrayElementos.push(elementos[i].title);
+			} 
+
+			console.log(arrayElementos);
+
+			new Awesomplete(fotos, {
+				list: arrayElementos,
+				minChars: 4,
+				maxItems: 5
+			});		
+			new Awesomplete(telefono, {
+				list: ["922354687", "922456789", "922123456", "822987654", "922582465"],
+				minChars: 4,
+				maxItems: 5
+			});
+
 		});
 
 		function mensaje(campo) {	
@@ -70,23 +101,23 @@
 	</script> 
 	<style>
 		.slider{
-			max-width: 600px;
+			max-width: 500px;
 			margin:auto;
+			z-index: 3;
 		}
 		body{
 			background-color:steelblue;
 		}
 		img{
-			max-width: 450px;
+			max-width: 500px;
 		}
 		.ba-slider {
-		  width: 500px;
+		  width: 490px;
 		  margin: auto;
 		  border: 5px solid #000;
-		}
-		.ba-slider {
-		    position: relative;
-		    overflow: hidden;
+		  position: relative;
+		  overflow: hidden;
+		  z-index: 0;
 		}
 		 
 		.ba-slider img {
@@ -191,37 +222,47 @@
 	<div id="modal-card">
 	  <h4>Slider de imágenes</h4>
 	  <p>Estos son los paisajes que se ven desde mi ventana:</p>
-		<div class="slider">
-			<div>
-				<img id="foto1" src="http://www.paisajesimagenes.com/wp-content/uploads/tipos-de-paisajes.jpg" title="paisaje 1" alt="montañas y prados verdes" onClick="mensaje(this)">
-			</div>
-			<div>
-				<img src="http://2.bp.blogspot.com/-J3pxJQmRNaw/TmVDyc7Ux7I/AAAAAAAALQk/MJCGmM8HPVE/s1600/Paisaje-m%25C3%25A1gico.jpg" title="paisaje 2" alt="lago helado" onClick="mensaje(this)">
-			</div>
-			<div>
-				<img src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="paisaje 3" alt="camino con flores amarillas" onClick="mensaje(this)">
-			</div>
-			<div>
-				<img src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="paisaje 4" alt="gran lago" onClick="mensaje(this)">
-			</div>	
-			<!-- before-after slider -->
-			<div class="ba-slider">
-				<!-- Imagen del después -->
-				<img src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="Después" alt="pues así quedó despues de usar photoshop" onClick="mensaje(this)">
-				<!-- Imagen del después -->
-				<div class="resize">
-					<img src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="Antes" alt="antes del retoque fotográfico" onClick="mensaje(this)">
-				</div>
-				<!-- Separador -->
-				<span class="handle"></span>
-			</div>	
-		</div>
+
 		<button onClick="document.getElementById('modal-card').remove()">Sí, tío. Bye.</button>
 		<!-- Fondo gris -->
 		<div class="modal-background"></div>		
 	</div>
 	<div class="boton">
 		<button onclick="paisajes()">Ver paisajes</button>
+	</div>
+	<div class="slider">
+		<div>
+			<img id="foto1" name="foto" src="http://www.paisajesimagenes.com/wp-content/uploads/tipos-de-paisajes.jpg" title="paisaje 1" alt="montañas y prados verdes" onClick="mensaje(this)">
+		</div>
+		<div>
+			<img name="foto" src="http://2.bp.blogspot.com/-J3pxJQmRNaw/TmVDyc7Ux7I/AAAAAAAALQk/MJCGmM8HPVE/s1600/Paisaje-m%25C3%25A1gico.jpg" title="paisaje 2" alt="lago helado" onClick="mensaje(this)">
+		</div>
+		<div>
+			<img name="foto" src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="paisaje 3" alt="camino con flores amarillas" onClick="mensaje(this)">
+		</div>
+		<div>
+			<img name="foto" src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="paisaje 4" alt="gran lago" onClick="mensaje(this)">
+		</div>	
+		<!-- before-after slider -->
+		<div class="ba-slider">
+			<!-- Imagen del después -->
+			<img name="foto" src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="Después" alt="pues así quedó despues de usar photoshop" onClick="mensaje(this)">
+			<!-- Imagen del después -->
+			<div class="resize">
+				<img name="foto" src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="Antes" alt="antes del retoque fotográfico" onClick="mensaje(this)">
+			</div>
+			<!-- Separador -->
+			<span class="handle"></span>
+		</div>	
+	</div>
+	<div id="formulario">
+	<form name="formularios" id="formulario1" action="" method="post" enctype="multipart/form-data">
+			Nombre:<input id="nombre" type="text">
+			<br>
+			Fotos:<input id="fotos">
+			<br>
+			Teléfono:<input id="telefono">
+	</form>
 	</div>
 	<!-- Opción 2: Personalizar mensaje -->
 	<div class="cookie-message">
