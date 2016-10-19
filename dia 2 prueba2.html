@@ -13,6 +13,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.2/trumbowyg.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.2/langs/es.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>	
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
@@ -96,6 +97,22 @@
 			});
 
 			$('#trumbowyg').trumbowyg('html');
+
+			var waypoint = new Waypoint({
+				element: document.getElementById('mitad'),
+				handler: function(direction) {					
+				    if (direction == 'down') {
+				      console.log('¡Hacia abajo!');
+				      document.location.href = "dia 2 prueba2.html#arriba";
+				      this.destroy(); 			        // Sólo lo detectará una vez
+				    }
+				    if (direction == 'up') {
+				      console.log('¡Hacia arriba!');
+				      document.location.href = "dia 2 prueba2.html#abajo";
+				      this.destroy(); 			        // Sólo lo detectará una vez
+				    }
+				}
+			});
 
 		});
 
@@ -239,6 +256,7 @@
 </head>
 
 <body>
+	<hr id="arriba">
 	<div id="modal-card">
 	  <h4>Slider de imágenes</h4>
 	  <p>Estos son los paisajes que se ven desde mi ventana:</p>
@@ -275,6 +293,9 @@
 			<span class="handle"></span>
 		</div>	
 	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<hr id="mitad">
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div id="formulario">
 	<form name="formularios" id="formulario1" action="" method="post" enctype="multipart/form-data">
 			Nombre:<input id="nombre" type="text">
@@ -294,5 +315,6 @@
 	  <!-- Botón de cerrar -->
 	  <a class="close" href="#">Cerrar</a></p>
 	</div>
+	<hr id="abajo">
 </body>
 </html>
