@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dia 3</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>	
+
+	<script>	
+		$(document).ready(function(){
+			var waypoint = new Waypoint({
+				element: document.getElementById('mitad'),
+				handler: function(direction) {				
+				    if (direction == 'down') {
+				      console.log('¡Hacia abajo!');
+				     // document.location.href = "dia 2 prueba2.html#arriba";
+				      alert("casi");
+				      this.destroy();				      
+				    }
+				}
+			});
+
+			var waypoint2 = new Waypoint({
+				element: document.getElementById('mitad2'),
+				handler: function(direction) {
+				    if (direction == 'up') {
+				      console.log('¡Hacia arriba!');
+				     // document.location.href = "dia 2 prueba2.html#abajo";
+				      alert("casi");
+				      this.destroy();
+				    }
+				}
+			});
+		});
+	</script> 
+</head>
+
+<body>
+	<a name="arriba">ARRIBA</a>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<hr id="mitad">waitpoint 1
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<hr id="mitad2">waitpoint 2
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<a name="abajo">ABAJO</a>
+</body>
+</html>
