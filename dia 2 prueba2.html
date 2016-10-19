@@ -11,6 +11,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/jquery.cookieBar.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.2/trumbowyg.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.2/langs/es.min.js"></script>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
@@ -18,6 +20,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/themes/libnotify.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.cookieBar/0.0.1/cookieBar.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.2/ui/trumbowyg.min.css">
 	<script>	
 		$(document).ready(function(){
 			$('.slider').slick({
@@ -64,7 +67,7 @@
 				arrayElementos.push(elementos[i].title);
 			} 
 
-			console.log(arrayElementos);
+			//console.log(arrayElementos);
 
 			new Awesomplete(fotos, {
 				list: arrayElementos,
@@ -76,6 +79,22 @@
 				minChars: 4,
 				maxItems: 5
 			});
+
+			$('.editor').trumbowyg({
+			  lang: 'es', // Idioma (es.min.js incluido)
+			  btns: [
+			          ['bold', 'italic', 'underline', 'strikethrough'],
+			          ['superscript', 'subscript'],
+			          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+			          ['unorderedList', 'orderedList'],
+			          ['link', 'insertImage'],
+			          ['horizontalRule', 'removeformat'],
+			          ['viewHTML'],
+			          ['fullscreen']
+			        ],
+			});
+
+			$('#trumbowyg').trumbowyg('html');
 
 		});
 
@@ -246,7 +265,7 @@
 		<!-- before-after slider -->
 		<div class="ba-slider">
 			<!-- Imagen del después -->
-			<img name="foto" src="http://www.fondoswiki.com/Uploads/fondoswiki.com/Resoluciones/877-1280x1024.jpg" title="Después" alt="pues así quedó despues de usar photoshop" onClick="mensaje(this)">
+			<img name="foto" src="http://www.paisajesimagenes.com/wp-content/uploads/tipos-de-paisajes.jpg" title="Después" alt="pues así quedó despues de usar photoshop" onClick="mensaje(this)">
 			<!-- Imagen del después -->
 			<div class="resize">
 				<img name="foto" src="http://www.todopaisajes.com/1024x768/paisaje-de-flores.jpg" title="Antes" alt="antes del retoque fotográfico" onClick="mensaje(this)">
@@ -262,6 +281,10 @@
 			Fotos:<input id="fotos">
 			<br>
 			Teléfono:<input id="telefono">
+			<br>
+			Documento:
+			<br>
+			<textarea class="editor"></textarea>
 	</form>
 	</div>
 	<!-- Opción 2: Personalizar mensaje -->
