@@ -11,6 +11,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
+	https://rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.css">
 	<script>
@@ -22,13 +24,13 @@
 				arrayElementos.push(elementos[i].innerHTML);
 			} 
 
-			var elementos2 = $('div.datos1');
+			var elementos2 = document.querySelectorAll('.datos1');
 			var arrayElementos2 = [];
 			for(var i = 0; i < elementos2.length; i++){
 				arrayElementos2.push(elementos2[i].innerHTML);
 			} 
 
-			var elementos3 = $('div.datos2');
+			var elementos3 = document.querySelectorAll('.datos2');
 			var arrayElementos3 = [];
 			for(var i = 0; i < elementos3.length; i++){
 				arrayElementos3.push(elementos3[i].innerHTML);
@@ -72,6 +74,12 @@
 
 			var tabla = document.getElementById('tablesort');
 			new Tablesort(tabla);
+
+			$('#card').flip({
+			  axis: 'x',				// 'x' para giro en eje X
+			  trigger: 'click',		// 'hover': giro sobre tarjeta
+			  speed: 500,				// Velocidad del giro
+			});
 		});
 	</script>
 	<style>
@@ -102,20 +110,45 @@
 		    vertical-align: middle;
 		    padding: 10px;
 		}
+		.dias, .datos1, .datos2{
+			width: 200px;
+		}
 		.celda {
 			margin-top: 0px;
 			width: 700px;
 			height: 700px;
 		}
-		/* Orden ascendente */
-		table th.sort-up::after {
-		  content:"▲";
-		}
-
-		/* Orden descendente */
-		table th.sort-down::after {
-		  content:"▼";
-		}
+		
+		th.sort-header::-moz-selection { background:transparent; }
+		th.sort-header::selection      { background:transparent; }
+		th.sort-header { cursor:pointer; }
+		table th.sort-header:after {
+		  content:'';
+		  float:right;
+		  margin-top:7px;
+		  border-width:0 4px 4px;
+		  border-style:solid;
+		  border-color:#404040 transparent;
+		  visibility:hidden;
+		  }
+		table th.sort-header:hover:after {
+		  visibility:visible;
+		  }
+		table th.sort-up:after,
+		table th.sort-down:after,
+		table th.sort-down:hover:after {
+		  visibility:visible;
+		  opacity:0.4;
+		  }
+		table th.sort-up:after {
+		  border-bottom:none;
+		  border-width:4px 4px 0;
+		  }
+		  #card {
+			  width: 500px;
+			  height: 500px;
+			  margin: auto;
+			}
 	</style> 
 </head>
 
@@ -126,33 +159,43 @@
 			<div class="chart"></div>
 			ASISTENCIA:
 			<table class="tabla" id="tablesort">
-				<tr class="linea">
-					<th class="dias" id="lunes" >Lunes</th>
-					<th class="dias" id="martes" >Martes</th>
-					<th class="dias" id="miercoles" >Miercoles</th>
-					<th class="dias" id="jueves" >Jueves</th>
-					<th class="dias" id="viernes" >Viernes</th>
-				</tr>
-				<tr class="linea">
-					<td class="datos1" id="d1lunes" >20</td>
-					<td class="datos1" id="d1martes" >18</td>
-					<td class="datos1" id="d1miercoles" >15</td>
-					<td class="datos1" id="d1jueves" >10</td>
-					<td class="datos1" id="d1viernes" >20</td>
-				</tr>
-				<tr class="linea">
-					<td class="datos2" id="d2lunes" >7</td>
-					<td class="datos2" id="d2martes" >14</td>
-					<td class="datos2" id="d2miercoles" >10</td>
-					<td class="datos2" id="d2jueves" >7</td>
-					<td class="datos2" id="d2viernes" >8</td>
-				</tr>
+				<thead>
+					<tr class="linea">
+						<th class="dias" id="lunes" >Lunes</th>
+						<th class="dias" id="martes" >Martes</th>
+						<th class="dias" id="miercoles" >Miercoles</th>
+						<th class="dias" id="jueves" >Jueves</th>
+						<th class="dias" id="viernes" >Viernes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="linea">
+						<td class="datos1" id="d1lunes" >20</td>
+						<td class="datos1" id="d1martes" >18</td>
+						<td class="datos1" id="d1miercoles" >15</td>
+						<td class="datos1" id="d1jueves" >10</td>
+						<td class="datos1" id="d1viernes" >20</td>
+					</tr>
+					<tr class="linea">
+						<td class="datos2" id="d2lunes" >7</td>
+						<td class="datos2" id="d2martes" >14</td>
+						<td class="datos2" id="d2miercoles" >10</td>
+						<td class="datos2" id="d2jueves" >7</td>
+						<td class="datos2" id="d2viernes" >8</td>
+					</tr>
+				</tbody>
 			</table>	
 		</div>
 		<div class="celda">		
 			<div id="diagram"></div>
 		</div>	
 	</div>
+</div>
+<div id="card">
+  <!-- Cara A -->
+  <img class="front" src="http://www.yuribs.com/pics/eurocoins/EUR2_1,00_2007.png">
+  <!-- Cara B -->
+  <img class="back" src="http://www.yuribs.com/pics/eurocoins/FIN1_1,00.png">
 </div>
 </body>
 </html>
