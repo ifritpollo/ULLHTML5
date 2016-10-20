@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dia 4</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.1/raphael.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.css">
+	<script>
+		$(document).ready(function(){
+
+			var elementos = document.querySelectorAll('.dias');
+			var arrayElementos = [];
+			for(var i = 0; i < elementos.length; i++){
+				arrayElementos.push(elementos[i].innerHTML);
+			} 
+
+			var elementos2 = $('div.datos1');
+			var arrayElementos2 = [];
+			for(var i = 0; i < elementos2.length; i++){
+				arrayElementos2.push(elementos2[i].innerHTML);
+			} 
+
+			var elementos3 = $('div.datos2');
+			var arrayElementos3 = [];
+			for(var i = 0; i < elementos3.length; i++){
+				arrayElementos3.push(elementos3[i].innerHTML);
+			} 
+
+			var datos = {
+			  labels: arrayElementos,
+			  series: [{ data: arrayElementos2 }, 
+			           { data: arrayElementos3 } 
+			          ]
+			};
+
+			console.log(arrayElementos);
+			console.log(arrayElementos2);
+			console.log(arrayElementos3);
+
+			var options = {
+				seriesBarDistance: 10,
+				reverseData: true,
+				horizontalBars: true,
+				axisY: {
+				  offset: 70
+				}
+			}
+
+			new Chartist.Bar('.chart', datos, options);
+
+			var sample = 'suspenso->aprobado: examen';
+
+			var sample1 = 'Title: Esto es un título';
+			var sample2 = 'B-->C: Línea a rayas';
+			var sample3 = 'C->>D: Línea con flecha hueca';
+			var sample4 = 'D-->>E: Línea a rayas con flecha hueca';
+			var sample5 = 'A->C: Uno \n B->C: Dos';
+
+			var diagram = Diagram.parse(sample5);
+
+			diagram.drawSVG('diagram', {
+				theme: 'simple'	// o 'hand'
+			});
+
+			var tabla = document.getElementById('tablesort');
+			new Tablesort(tabla);
+		});
+	</script>
+	<style>
+		.chart {
+			width: 600px;
+			height: 400px;
+			margin-left: 0px;
+			margin-top: 0px;
+		}
+		.chart .ct-series-c line,   
+		.chart .ct-series-c path {  
+		  stroke: #0F0;
+		}
+		.tabla {
+			margin-left: 0px;
+		    display: table;
+		    border: 2px solid #000;
+		    width: 300px;
+		    text-align: center;
+		    margin: 0 auto;
+		}
+		.linea {
+		    display: table-row;
+		}
+		.dias, .datos1, .datos2, .celda {
+		    display: table-cell;
+		    border: 1px solid #000;
+		    vertical-align: middle;
+		    padding: 10px;
+		}
+		.celda {
+			margin-top: 0px;
+			width: 700px;
+			height: 700px;
+		}
+		/* Orden ascendente */
+		table th.sort-up::after {
+		  content:"▲";
+		}
+
+		/* Orden descendente */
+		table th.sort-down::after {
+		  content:"▼";
+		}
+	</style> 
+</head>
+
+<body>
+<div class="tabla">
+	<div class="linea">
+		<div class="celda">
+			<div class="chart"></div>
+			ASISTENCIA:
+			<table class="tabla" id="tablesort">
+				<tr class="linea">
+					<th class="dias" id="lunes" >Lunes</th>
+					<th class="dias" id="martes" >Martes</th>
+					<th class="dias" id="miercoles" >Miercoles</th>
+					<th class="dias" id="jueves" >Jueves</th>
+					<th class="dias" id="viernes" >Viernes</th>
+				</tr>
+				<tr class="linea">
+					<td class="datos1" id="d1lunes" >20</td>
+					<td class="datos1" id="d1martes" >18</td>
+					<td class="datos1" id="d1miercoles" >15</td>
+					<td class="datos1" id="d1jueves" >10</td>
+					<td class="datos1" id="d1viernes" >20</td>
+				</tr>
+				<tr class="linea">
+					<td class="datos2" id="d2lunes" >7</td>
+					<td class="datos2" id="d2martes" >14</td>
+					<td class="datos2" id="d2miercoles" >10</td>
+					<td class="datos2" id="d2jueves" >7</td>
+					<td class="datos2" id="d2viernes" >8</td>
+				</tr>
+			</table>	
+		</div>
+		<div class="celda">		
+			<div id="diagram"></div>
+		</div>	
+	</div>
+</div>
+</body>
+</html>
