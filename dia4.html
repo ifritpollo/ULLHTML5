@@ -75,9 +75,9 @@
 			var tabla = document.getElementById('tablesort');
 			new Tablesort(tabla);
 
-			$('#card').flip({
+			document.getElementById('card').flip({
 			  axis: 'x',				// 'x' para giro en eje X
-			  trigger: 'click',		// 'hover': giro sobre tarjeta
+			  trigger: 'hover',		// 'hover': giro sobre tarjeta
 			  speed: 500,				// Velocidad del giro
 			});
 		});
@@ -144,11 +144,11 @@
 		  border-bottom:none;
 		  border-width:4px 4px 0;
 		  }
-		  #card {
-			  width: 500px;
-			  height: 500px;
-			  margin: auto;
-			}
+		#card {
+			width: 500px;
+			height: 500px;
+			margin: auto;
+		}
 	</style> 
 </head>
 
