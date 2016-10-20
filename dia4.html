@@ -11,9 +11,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
-	<script src="https://rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>	
+	<script src="https://rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.0.3/doT.min.js"></script>
+	<script src="https://cdn.rawgit.com/mistic100/uEvent/master/uevent.min.js"></script>
+	<script src="https://cdn.rawgit.com/malko/D.js/master/lib/D.min.js"></script>
+	<script src="https://cdn.rawgit.com/mistic100/Photo-Sphere-Viewer/master/dist/photo-sphere-viewer.min.js"></script>	
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/mistic100/Photo-Sphere-Viewer/master/dist/photo-sphere-viewer.min.css">
 	<script>
 		$(document).ready(function(){
 
@@ -78,6 +84,12 @@
 			  axis: 'y',				// 'x' para giro en eje X
 			  trigger: 'hover',		// 'hover': giro sobre tarjeta
 			  speed: 500,				// Velocidad del giro
+			});
+
+			var PSV = PhotoSphereViewer({
+			  panorama:  'https://upload.wikimedia.org/wikipedia/commons/e/e7/Durango_Panoramica_360%C2%BA.jpg',
+			  container: 'photosphere',
+			  loading_img: 'https://media.giphy.com/media/TtZqlvHid7BjW/giphy.gif',
 			});
 		});
 	</script>
@@ -148,6 +160,11 @@
 			height: 500px;
 			margin: auto;
 		}
+		#photosphere {
+		  width: 600px;
+		  height: 400px;
+		  background: #DDD;
+		}
 	</style> 
 </head>
 
@@ -196,5 +213,7 @@
   <!-- Cara B -->
   <img class="back" src="http://www.yuribs.com/pics/eurocoins/FIN1_1,00.png">
 </div>
+
+<div id="photosphere"></div>
 </body>
 </html>
