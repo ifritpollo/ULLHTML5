@@ -11,8 +11,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js"></script>
-	https://rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js
+	<script src="https://rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>	
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.css">
 	<script>
@@ -75,8 +74,8 @@
 			var tabla = document.getElementById('tablesort');
 			new Tablesort(tabla);
 
-			document.getElementById('card').flip({
-			  axis: 'x',				// 'x' para giro en eje X
+			$('#card').flip({
+			  axis: 'y',				// 'x' para giro en eje X
 			  trigger: 'hover',		// 'hover': giro sobre tarjeta
 			  speed: 500,				// Velocidad del giro
 			});
