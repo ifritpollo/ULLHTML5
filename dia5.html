@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dia 5</title>
+	
+	<link rel="stylesheet" href="https://rawgit.com/ManzDev/cursos-assets/gh-pages/html5-av/impressjs/impress.base.min.css">
+  <link rel="stylesheet" href="https://rawgit.com/ManzDev/cursos-assets/gh-pages/html5-av/impressjs/darkgrey.theme.min.css">
+	<script>
+		$(document).ready(function(){
+			impress().init();
+		});
+	</script>
+	<style>
+		#segunda{
+
+		}
+		
+	</style> 
+</head>
+
+<body>
+	<!-- Fallback (navegadores no compatibles)-->
+	<div class="fallback-message">
+		<p>Tu navegador <b>no soporta HTML5</b>. Para una mejor experiencia, por favor, utiliza un navegador moderno compatible con HTML5.</p>
+	</div>
+	<!-- Comenzamos impress.js-->
+	<div id="impress">
+		<div id="primera" class="step" data-x="0" data-y="0">
+			<h1>primer</h1>
+		</div>
+		<div id="segunda" class="step" data-x="1000" data-y="0" data-z="3000">
+			<h1>segundo</h1>
+		</div>
+		<div id="overview" class="step" data-x="2000" data-y="0">
+			<h1>ultima</h1>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.min.js"></script>
+</body>
+</html>
