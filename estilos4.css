@@ -1,0 +1,65 @@
+.aguila{
+	background-color: #000;
+	width: 140px;
+	height: 200px;
+	-webkit-animation:vuela 2s linear infinite;
+	animation:vuela 2s linear infinite;
+}
+@-webkit-keyframes vuela{
+	0%{
+		background: url(imagenes/1.png);
+	}
+	12%{
+		background: url(imagenes/2.png);
+	}
+	24%{
+		background: url(imagenes/3.png);
+	}
+	36%{
+		background: url(imagenes/4.png);
+	}
+	48%{
+		background: url(imagenes/5.png);
+	}
+	60%{
+		background: url(imagenes/6.png);
+	}
+	72%{
+		background: url(imagenes/7.png);
+	}
+	84%{
+		background: url(imagenes/8.png);
+	}
+	100%{
+		background: url(imagenes/9.png);
+	}
+}
+@keyframes vuela{
+	0%{
+		background: url(imagenes/1.png);
+	}
+	12%{
+		background: url(imagenes/2.png);
+	}
+	24%{
+		background: url(imagenes/3.png);
+	}
+	36%{
+		background: url(imagenes/4.png);
+	}
+	48%{
+		background: url(imagenes/5.png);
+	}
+	60%{
+		background: url(imagenes/6.png);
+	}
+	72%{
+		background: url(imagenes/7.png);
+	}
+	84%{
+		background: url(imagenes/8.png);
+	}
+	100%{
+		background: url(imagenes/9.png);
+	}
+}
